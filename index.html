@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Number</title>
+</head>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <h1>Birthday Prime Checker 😎</h1>
+  <label for="user-input">Enter your Birthday here 👇</label>
+  <input type="date" id="user-input" style="padding: 1rem; outline: none; font-size: 1rem;">
+  <div style="display: flex; flex-direction:row; margin-top: 2rem;">
+    <button id="submit"
+      style="padding: 1rem; font-size:1rem; cursor: pointer; font-weight: bold; background-color:blanchedalmond; border:1px solid rgb(242, 167, 54) ;color:forestgreen; margin-right: 1rem;">Check</button>
+    <button id="clear"
+      style="padding: 1rem; font-size:1rem; cursor: pointer; font-weight: bold; background-color: antiquewhite; border: none; color:forestgreen; margin-left: 1rem;">Clear</button>
+  </div>
+
+  <div style="margin-top: 2rem;"><label for="">Your Output would appear here👇</label>
+    <div id="show" style="width: 100%; height: 6rem; border: 1px solid black; background-color: beige;"></div>
+  </div>
+</div>
+
+
+<body>
+</body>
+<script>
+  const userInput = document.querySelector("#user-input");
+  const submit = document.querySelector("#submit");
+  const clear = document.querySelector("#clear");
+  const show = document.querySelector("#show");
+
+  const clearEventHandler = () => {
+    userInput.value = '';
+    show.textContent = '';
+  }
+  const primeCheckHandler = () => {
+    if (userInput.value) {
+      let isPrime = true;
+      const userDob = Number(userInput.value.slice(8))
+      for (let i = 2; i < userDob; i++) {
+        if (userDob % i === 0) {
+          isPrime = false;
+          break;
+        }
+      }
+      if (isPrime) {
+        show.innerHTML = "<p style='font-size:1rem;font-weight : bold; margin-left:1rem; color:blue;'>Your Birthday is a Prime Number ✨🎉</p>"
+      } else {
+        show.innerHTML = "<p style='font-size:1rem;font-weight : bold; margin-left:1rem; color:blue;'>Your Birthday is not a Prime Number 💔</p>"
+      }
+    }
+
+    else {
+      show.innerHTML = "<p style='color:red; margin-left:1rem;'>please enter a number !!</p>"
+    }
+  }
+
+  submit.addEventListener("click", primeCheckHandler);
+  clear.addEventListener("click", clearEventHandler)
+</script>
+
+</html>
